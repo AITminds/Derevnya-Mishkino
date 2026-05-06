@@ -14,12 +14,24 @@ const iconMap: Record<string, ReactNode> = {
       <circle cx="12" cy="12" r="2.75" />
     </svg>
   ),
+  sauna: (
+    <svg viewBox="0 0 24 24" className="h-6 w-6" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M6 18V8.5A2.5 2.5 0 0 1 8.5 6H16a2 2 0 0 1 2 2v10" />
+      <path d="M4 18h16" />
+      <path d="M9 10.5v4.5" />
+      <path d="M12 10.5v4.5" />
+      <path d="M15 10.5v4.5" />
+      <path d="M8 5.5c0-1 .6-1.5 1.2-2" />
+      <path d="M11 5.5c0-1 .6-1.5 1.2-2" />
+      <path d="M14 5.5c0-1 .6-1.5 1.2-2" />
+    </svg>
+  ),
   wifi: (
-    <svg viewBox="0 0 24 24" className="h-6 w-6" fill="none" stroke="currentColor" strokeWidth="1.7">
-      <path d="M5 9a11.2 11.2 0 0 1 14 0" />
-      <path d="M8 12a6.6 6.6 0 0 1 8 0" />
-      <path d="M11 15a2.2 2.2 0 0 1 2 0" />
-      <circle cx="12" cy="18" r="1" fill="currentColor" stroke="none" />
+    <svg viewBox="0 0 24 24" className="h-7 w-7" fill="none" stroke="currentColor" strokeWidth="1.85" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M4.5 8.8a13.2 13.2 0 0 1 15 0" />
+      <path d="M7.7 12.1a8 8 0 0 1 8.6 0" />
+      <path d="M10.6 15.4a3.15 3.15 0 0 1 2.8 0" />
+      <circle cx="12" cy="19.2" r="1.2" fill="currentColor" stroke="none" />
     </svg>
   ),
   parking: (
@@ -48,6 +60,22 @@ const iconMap: Record<string, ReactNode> = {
       <circle cx="16.5" cy="8.5" r="2" />
       <path d="M4 19a4 4 0 0 1 8 0" />
       <path d="M13 19a3.5 3.5 0 0 1 7 0" />
+    </svg>
+  ),
+  pool: (
+    <svg viewBox="0 0 24 24" className="h-6 w-6" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M6 8.5h9a3 3 0 0 1 0 6H9.5" />
+      <path d="M6 5.5v13" />
+      <path d="M4 17.2c1 .7 2 .8 3 .8s2-.1 3-.8c1 .7 2 .8 3 .8s2-.1 3-.8c1 .7 2 .8 3 .8" />
+      <path d="M4 20c1 .7 2 .8 3 .8s2-.1 3-.8c1 .7 2 .8 3 .8s2-.1 3-.8c1 .7 2 .8 3 .8" />
+    </svg>
+  ),
+  pets: (
+    <svg viewBox="0 0 24 24" className="h-7 w-7" fill="none" stroke="currentColor" strokeWidth="1.85" strokeLinecap="round" strokeLinejoin="round">
+      <circle cx="7.2" cy="8.4" r="2.05" />
+      <circle cx="12" cy="6.5" r="2.05" />
+      <circle cx="16.8" cy="8.4" r="2.05" />
+      <path d="M6.9 15.8c0-2.8 2.1-4.9 5.1-4.9s5.1 2.1 5.1 4.9c0 2.1-1.3 3.4-3.1 3.4-1.1 0-1.7-.5-2-1.1-.3.6-.9 1.1-2 1.1-1.8 0-3.1-1.3-3.1-3.4Z" />
     </svg>
   ),
 };
@@ -91,7 +119,7 @@ export default function HomePage() {
         <div className="section-shell grid min-h-[calc(100vh-6rem)] items-center gap-6 md:min-h-[calc(100vh-7rem)] lg:grid-cols-[1.05fr_0.95fr] lg:gap-16">
           <SectionReveal className="relative z-10 mx-auto w-full max-w-3xl pt-6 text-center sm:pt-10 sm:text-left lg:pt-0">
             <span className="section-eyebrow">Гостевой дом</span>
-            <h1 className="balanced-text mx-auto max-w-[19rem] font-serif text-[2.35rem] font-semibold leading-[0.98] text-stone sm:mx-0 sm:max-w-3xl sm:text-6xl lg:text-7xl">
+            <h1 className="balanced-text mx-auto max-w-[19rem] font-serif text-[2.35rem] font-semibold leading-[0.98] text-[rgba(0, 0, 0)] drop-shadow-[0_10px_30px_rgba(134,129,25,1)] sm:mx-0 sm:max-w-3xl sm:text-6xl lg:text-7xl">
               {siteContent.hero.title}
             </h1>
             <p className="balanced-text mx-auto mt-5 max-w-[19rem] text-[0.98rem] leading-7 text-stone sm:mx-0 sm:mt-6 sm:max-w-2xl sm:text-lg sm:leading-8">
@@ -137,7 +165,7 @@ export default function HomePage() {
           <SectionReveal delay={0.1} className="grid gap-8 self-center pt-0 sm:pt-3 lg:pt-0">
             {siteContent.about.highlights.map((item, index) => (
               <div key={item.title} className="relative border-l border-accent/18 pl-5 sm:pl-6">
-                {index === 0 ? <div className="absolute -left-2 top-2 h-3.5 w-3.5 rounded-full bg-accent/70" /> : null}
+                <div className="absolute -left-2 top-2 h-3.5 w-3.5 rounded-full bg-accent/70" />
                 <h3 className="font-serif text-[1.65rem] text-stone sm:text-2xl">{item.title}</h3>
                 <p className="mt-3 max-w-md text-sm leading-7 text-stone sm:text-base">{item.text}</p>
               </div>
@@ -152,7 +180,7 @@ export default function HomePage() {
           <SectionHeading eyebrow={siteContent.advantages.eyebrow} title={siteContent.advantages.title} description={siteContent.advantages.description} centered />
           <div className="mt-12 grid gap-x-8 gap-y-10 md:grid-cols-2 xl:grid-cols-3">
             {siteContent.advantages.items.map((item, index) => (
-              <SectionReveal key={item.title} delay={index * 0.06} className="group relative border-t border-stone/10 pt-5">
+              <SectionReveal key={item.title} delay={index * 0.06} className="group relative border-t border-stone/10 pt-6">
                 <div className="flex h-10 w-10 items-center justify-center rounded-full bg-white/52 text-accent shadow-[0_10px_30px_rgba(74,92,60,0.09)] transition duration-300 group-hover:bg-white/72 group-hover:-translate-y-0.5 sm:h-11 sm:w-11">
                   {iconMap[item.icon]}
                 </div>
@@ -169,9 +197,6 @@ export default function HomePage() {
           <div className="grid gap-10 lg:grid-cols-[0.82fr_1.18fr] lg:items-end">
             <SectionReveal className="max-w-xl">
               <SectionHeading eyebrow={siteContent.rooms.eyebrow} title={siteContent.rooms.title} description={siteContent.rooms.description} />
-            </SectionReveal>
-            <SectionReveal delay={0.08} className="mx-auto w-full rounded-[24px] border border-white/35 bg-white/34 px-4 py-4 text-center text-sm leading-7 text-stone backdrop-blur-sm sm:max-w-lg sm:justify-self-end sm:rounded-[36px] sm:px-6 sm:py-5 sm:text-left">
-              Просторные изображения, мягкие подписи и тёплые детали помогают показать номера атмосферно, без ощущения каталога или жёсткой сетки.
             </SectionReveal>
           </div>
 
@@ -230,11 +255,14 @@ export default function HomePage() {
           <div className="mt-10 grid gap-8 lg:mt-12 lg:grid-cols-3">
             {siteContent.reviews.items.map((review, index) => (
               <SectionReveal key={review.name} delay={index * 0.07} className="relative border-t border-stone/10 pt-6">
-                <p className="font-serif text-4xl leading-none text-accent/80">&ldquo;</p>
-                <p className="mt-4 max-w-sm text-sm leading-8 text-stone sm:text-base">{review.text}</p>
-                <div className="mt-6 pt-4">
+                <div className="max-w-[34ch] sm:max-w-[36ch]">
+                  <p className="mt-1 -mb-1 text-left font-serif text-4xl leading-none text-accent/80">&ldquo;</p>
+                  <p className="mt-1 text-justify text-sm leading-8 text-stone sm:text-base">{review.text}</p>
+                  <p className="mt-1 -mb-1 text-right font-serif text-4xl leading-none text-accent/80">&rdquo;</p>
+                </div>
+                <div className="mt-3 text-left pt-0">
                   <p className="font-medium text-stone">{review.name}</p>
-                  <p className="mt-1 text-sm text-stone">{review.meta}</p>
+                  {review.meta ? <p className="mt-1 text-sm text-stone">{review.meta}</p> : null}
                 </div>
               </SectionReveal>
             ))}

@@ -39,7 +39,7 @@ img {
 }
 
 .section-space {
-  @apply py-16 sm:py-20 lg:py-28;
+  @apply py-[50px] sm:py-[50px] lg:py-[50px];
 }
 
 .card-surface {
@@ -148,6 +148,7 @@ img {
   background: linear-gradient(180deg, rgba(235, 239, 230, 0), rgba(235, 239, 230, 0.72), rgba(235, 239, 230, 0));
   pointer-events: none;
 }
+
 
 @media (prefers-reduced-motion: reduce) {
   html {

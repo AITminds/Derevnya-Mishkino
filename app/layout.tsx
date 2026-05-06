@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Lora, Nunito_Sans } from "next/font/google";
+import { Lora, Nunito_Sans, Old_Standard_TT } from "next/font/google";
 import { SmoothScroll } from "@/components/smooth-scroll";
 import { siteContent } from "@/data/site-content";
 import "./globals.css";
@@ -14,6 +14,12 @@ const bodyFont = Nunito_Sans({
   subsets: ["latin", "cyrillic"],
   variable: "--font-body",
   weight: ["400", "500", "600", "700"],
+});
+
+const brandFont = Old_Standard_TT({
+  subsets: ["latin", "cyrillic"],
+  variable: "--font-brand",
+  weight: ["400"],
 });
 
 export const metadata: Metadata = {
@@ -63,7 +69,7 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="ru" className="scroll-smooth">
-      <body className={`${displayFont.variable} ${bodyFont.variable} bg-linen font-sans text-stone antialiased`}>
+      <body className={`${displayFont.variable} ${bodyFont.variable} ${brandFont.variable} bg-linen font-sans text-stone antialiased`}>
         <SmoothScroll />
         {children}
       </body>

@@ -187,8 +187,7 @@ export function GalleryShowcase({ images }: GalleryShowcaseProps) {
               <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(49,62,41,0.02),rgba(61,78,50,0.16))]" />
             </div>
             <div className="liquid-glass organic-wash absolute inset-x-3 bottom-3 rounded-[18px] p-3 sm:inset-x-4 sm:bottom-4 sm:rounded-[20px]">
-              <p className="text-xs font-semibold uppercase tracking-[0.18em] text-accent">Фото {index + 1}</p>
-              <p className="mt-2 text-sm leading-5 text-stone">{image.alt}</p>
+              <p className="text-sm leading-5 text-stone">{image.alt}</p>
             </div>
           </button>
         ))}
@@ -201,7 +200,7 @@ export function GalleryShowcase({ images }: GalleryShowcaseProps) {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.24, ease: [0.22, 1, 0.36, 1] }}
-            className="fixed inset-0 z-[70] flex items-center justify-center bg-stone/82 p-0 backdrop-blur-md sm:p-4"
+            className="fixed inset-0 z-[70] flex items-center justify-center bg-[rgba(34,29,25,0.56)] p-0 backdrop-blur-md sm:p-4"
             onWheel={(event) => event.preventDefault()}
           >
             <button type="button" aria-label="Закрыть просмотр изображения" onClick={() => setLightboxIndex(null)} className="absolute inset-0" />
@@ -211,7 +210,7 @@ export function GalleryShowcase({ images }: GalleryShowcaseProps) {
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.99, y: 10 }}
               transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
-              className="relative z-10 flex h-full w-full max-w-[98vw] flex-col overflow-hidden bg-[#12110f] sm:h-auto sm:max-h-[96vh] sm:max-w-[94vw] sm:rounded-[28px] lg:max-w-[92vw]"
+              className="relative z-10 flex h-full w-full max-w-[98vw] flex-col overflow-hidden bg-[linear-gradient(180deg,rgba(247,248,242,0.98),rgba(232,237,226,0.96))] shadow-[0_28px_90px_rgba(50,63,42,0.24)] sm:h-auto sm:max-h-[96vh] sm:max-w-[94vw] sm:rounded-[28px] lg:max-w-[92vw]"
             >
               <div className="absolute left-4 right-4 top-4 z-20 flex items-center justify-between gap-3 sm:left-6 sm:right-6 sm:top-6">
                 <div className="liquid-glass organic-wash rounded-full px-4 py-2 text-xs font-semibold uppercase tracking-[0.24em] text-stone">
@@ -227,7 +226,7 @@ export function GalleryShowcase({ images }: GalleryShowcaseProps) {
               </div>
 
               <div
-                className="relative h-[72vh] min-h-[320px] flex-1 overflow-hidden sm:h-[78vh] sm:min-h-[520px] sm:max-h-[calc(96vh-10rem)]"
+                className="relative h-[72vh] min-h-[320px] flex-1 overflow-hidden bg-[radial-gradient(circle_at_top,rgba(243,246,237,0.94),rgba(223,232,214,0.86)_46%,rgba(205,217,196,0.88)_100%)] sm:h-[78vh] sm:min-h-[520px] sm:max-h-[calc(96vh-10rem)]"
                 onTouchStart={handleTouchStart}
                 onTouchMove={handleTouchMove}
                 onTouchEnd={handleTouchEnd}
@@ -245,25 +244,25 @@ export function GalleryShowcase({ images }: GalleryShowcaseProps) {
                 </div>
               </div>
 
-              <div className="relative z-10 border-t border-white/10 bg-stone/92 px-4 py-3 text-white sm:px-6 sm:py-4">
+              <div className="relative z-10 border-t border-pine/10 bg-[linear-gradient(180deg,rgba(241,245,236,0.96),rgba(228,235,221,0.98))] px-4 py-3 text-stone sm:px-6 sm:py-4">
                 <div className="flex flex-col gap-3 lg:flex-row lg:items-center lg:justify-between">
                   <div className="min-w-0">
-                    <p className="text-xs font-semibold uppercase tracking-[0.24em] text-white/60">{(lightboxIndex ?? 0) + 1} / {images.length}</p>
-                    <p className="mt-2 text-sm leading-6 text-white/90 sm:text-base">{lightboxImage.alt}</p>
+                    <p className="text-xs font-semibold uppercase tracking-[0.24em] text-accent">{(lightboxIndex ?? 0) + 1} / {images.length}</p>
+                    <p className="mt-2 text-sm leading-6 text-stone sm:text-base">{lightboxImage.alt}</p>
                   </div>
 
                   <div className="flex flex-wrap items-center gap-2">
                     <button
                       type="button"
                       onClick={movePrev}
-                      className="rounded-full border border-white/12 bg-white/8 px-4 py-2 text-sm font-medium text-white transition hover:bg-white/12"
+                      className="rounded-full border border-pine/12 bg-white/65 px-4 py-2 text-sm font-medium text-stone transition hover:bg-white"
                     >
                       Назад
                     </button>
                     <button
                       type="button"
                       onClick={moveNext}
-                      className="rounded-full border border-white/12 bg-white/8 px-4 py-2 text-sm font-medium text-white transition hover:bg-white/12"
+                      className="rounded-full border border-pine/12 bg-white/65 px-4 py-2 text-sm font-medium text-stone transition hover:bg-white"
                     >
                       Далее
                     </button>

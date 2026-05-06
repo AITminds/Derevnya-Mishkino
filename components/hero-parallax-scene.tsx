@@ -53,6 +53,7 @@ export function HeroParallaxScene({
           <Image src={estateImage} alt={estateImageAlt} fill priority className="object-cover object-center scale-[1.04] sm:scale-[1.02]" />
           <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(48,60,40,0.10),rgba(59,75,48,0.26))]" />
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(250,251,244,0.16),rgba(250,251,244,0)_38%),linear-gradient(180deg,rgba(246,248,242,0.02),rgba(215,223,208,0.14))]" />
+          <div className="absolute inset-x-0 bottom-[-6%] h-[22%] bg-[linear-gradient(180deg,rgba(234,239,229,0),rgba(234,239,229,0.88)_58%,rgba(234,239,229,1)_100%)] blur-2xl sm:h-[18%]" />
         </div>
       </motion.div>
 

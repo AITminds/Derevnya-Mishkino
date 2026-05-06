@@ -52,13 +52,17 @@ export function SiteHeader({ navigation, siteName, contactHref }: SiteHeaderProp
     <header className="fixed inset-x-0 top-0 z-50 px-2 py-3 sm:px-6 sm:py-4 lg:px-8">
       <div className="mx-auto w-full max-w-7xl">
         <div className="liquid-glass organic-wash flex min-w-0 items-center justify-between rounded-full px-3 py-3 sm:px-6">
-          <a href="#home" className="max-w-[8.5rem] text-pretty font-serif text-[1.05rem] leading-tight text-stone sm:max-w-none sm:text-2xl">
+          <a
+            href="#home"
+            className="relative z-10 max-w-[8.5rem] text-pretty font-brand text-[1.08rem] leading-[0.98] tracking-[0.02em] sm:max-w-none sm:text-[1.82rem]"
+            style={{ color: "#000000" }}
+          >
             {siteName}
           </a>
 
           <nav className="hidden items-center gap-6 lg:flex">
             {navigation.map((item) => (
-              <a key={item.href} href={item.href} className={`text-sm font-medium ${linkClass(item.href)}`}>
+              <a key={item.href} href={item.href} className={`text-base font-medium ${linkClass(item.href)}`}>
                 {item.label}
               </a>
             ))}
@@ -67,7 +71,7 @@ export function SiteHeader({ navigation, siteName, contactHref }: SiteHeaderProp
           <div className="ml-2 flex shrink-0 items-center gap-2 sm:ml-3 sm:gap-3">
             <a
               href={contactHref}
-              className="hidden rounded-full bg-accent px-5 py-2.5 text-sm font-medium text-white shadow-[0_12px_30px_rgba(102,123,87,0.28)] transition hover:bg-accent/90 md:inline-flex"
+              className="hidden rounded-full bg-accent px-6 py-3 text-base font-medium text-white shadow-[0_12px_30px_rgba(102,123,87,0.28)] transition hover:bg-accent/90 md:inline-flex"
             >
               Контакты
             </a>

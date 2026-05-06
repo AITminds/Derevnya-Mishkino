@@ -17,6 +17,7 @@ const config: Config = {
         accent: "#667b57",
       },
       fontFamily: {
+        brand: ["var(--font-brand)"],
         serif: ["var(--font-display)"],
         sans: ["var(--font-body)"],
       },
