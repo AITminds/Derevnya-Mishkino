@@ -107,8 +107,8 @@ export const siteContent = {
         icon: "sauna",
       },
       {
-        title: "Тёплый бассейн",
-        text: "Бассейн с подогревом позволяет наслаждаться водой в любое время года и делает отдых ещё более приятным, мягким и расслабляющим.",
+        title: "Бассейн на территории",
+text: "Просторный бассейн на территории — чтобы освежиться, расслабиться у воды и добавить отдыху то самое летнее настроение.",
         icon: "pool",
       },
     ],
@@ -118,7 +118,7 @@ export const siteContent = {
     eyebrow: "Номера",
     title: "Четыре номера с тёплым интерьером и всем необходимым для комфортного отдыха.",
     description:
-      "Во всех номерах одинаковый уровень комфорта: аккуратный интерьер, мягкий свет, удобная кровать, своя ванная комната и всё, что нужно для спокойного проживания.",
+      "Во всех номерах одинаковый уровень комфорта: аккуратный интерьер, мягкий свет, удобная кровать, телевизор, полки, своя ванная комната и всё, что нужно для спокойного проживания.",
 
     // CHANGE ROOM DATA HERE
     items: [
@@ -238,15 +238,15 @@ export const siteContent = {
 
     // CHANGE CONTACTS HERE
     phone: "+7 (988) 340-06-94",
-    email: "",
+    email: "derevniamishkino@mail.ru",
     address: "СТ Лесная Поляна, улица Уютная 7, городской округ Новороссийск, Краснодарский край",
     // REPLACE YANDEX MAP HERE
     yandexMapEmbedUrl:
       "https://yandex.ru/map-widget/v1/?ll=37.720493%2C44.699538&mode=search&oid=159553927525&ol=biz&tab=reviews&z=17.07",
     socials: [
-      { label: "WhatsApp", href: "https://wa.me/15554821976" },
-      { label: "Telegram", href: "https://t.me/mishkinovillage" },
-      { label: "Макс", href: "https://instagram.com/mishkinovillage" },
+      { label: "WhatsApp", href: "https://wa.me/+79883400694" },
+      { label: "Telegram", href: "https://t.me/derevniamishkino" },
+      { label: "Макс", href: "https://max.ru/108014110" },
     ],
     note: "Пишите и звоните любым удобным способом - мы с радостью подскажем детали и поможем всё организовать заранее.",
   },
