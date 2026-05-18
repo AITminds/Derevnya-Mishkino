@@ -8,6 +8,8 @@ type GalleryImage = {
   alt: string;
 };
 
+type ImgSize = { w: number; h: number };
+
 type GalleryShowcaseProps = {
   images: readonly GalleryImage[];
 };
@@ -26,6 +28,7 @@ export function GalleryShowcase({ images }: GalleryShowcaseProps) {
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
   const [scale, setScale] = useState(1);
   const [offset, setOffset] = useState<Point>({ x: 0, y: 0 });
+  const [imgSize, setImgSize] = useState<ImgSize | null>(null);
 
   const pinchDistanceRef = useRef<number | null>(null);
   const pinchStartScaleRef = useRef(1);
@@ -75,6 +78,7 @@ export function GalleryShowcase({ images }: GalleryShowcaseProps) {
   const resetZoom = () => {
     setScale(1);
     setOffset({ x: 0, y: 0 });
+    setImgSize(null);
     pinchDistanceRef.current = null;
     pinchStartScaleRef.current = 1;
     panStartPointRef.current = null;
@@ -126,6 +130,13 @@ export function GalleryShowcase({ images }: GalleryShowcaseProps) {
 
       if (nextScale <= 1.02) {
         setOffset({ x: 0, y: 0 });
+      } else if (imgSize) {
+        const maxOx = (imgSize.w * nextScale - imgSize.w) / 2;
+        const maxOy = (imgSize.h * nextScale - imgSize.h) / 2;
+        setOffset((prev) => ({
+          x: Math.min(maxOx, Math.max(-maxOx, prev.x)),
+          y: Math.min(maxOy, Math.max(-maxOy, prev.y)),
+        }));
       }
       return;
     }
@@ -133,10 +144,18 @@ export function GalleryShowcase({ images }: GalleryShowcaseProps) {
     if (event.touches.length === 1 && panStartPointRef.current && scale > 1) {
       event.preventDefault();
       const touch = event.touches[0];
-      setOffset({
-        x: panStartOffsetRef.current.x + (touch.clientX - panStartPointRef.current.x),
-        y: panStartOffsetRef.current.y + (touch.clientY - panStartPointRef.current.y),
-      });
+      const rawX = panStartOffsetRef.current.x + (touch.clientX - panStartPointRef.current.x);
+      const rawY = panStartOffsetRef.current.y + (touch.clientY - panStartPointRef.current.y);
+      if (imgSize) {
+        const maxOx = (imgSize.w * scale - imgSize.w) / 2;
+        const maxOy = (imgSize.h * scale - imgSize.h) / 2;
+        setOffset({
+          x: Math.min(maxOx, Math.max(-maxOx, rawX)),
+          y: Math.min(maxOy, Math.max(-maxOy, rawY)),
+        });
+      } else {
+        setOffset({ x: rawX, y: rawY });
+      }
     }
   };
 
@@ -174,20 +193,23 @@ export function GalleryShowcase({ images }: GalleryShowcaseProps) {
 
   return (
     <>
-      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-3">
+      <div className="columns-1 gap-4 sm:columns-2 xl:columns-3">
         {images.map((image, index) => (
           <button
             key={image.src}
             type="button"
             onClick={() => openLightbox(index)}
-            className="group relative overflow-hidden rounded-[22px] text-left shadow-[0_18px_50px_rgba(68,85,58,0.12)] sm:rounded-[28px]"
+            className="group relative mb-4 block w-full overflow-hidden rounded-[22px] text-left shadow-[0_18px_50px_rgba(68,85,58,0.12)] sm:rounded-[28px]"
+            style={{ breakInside: "avoid" }}
           >
-            <div className="relative aspect-[4/3] overflow-hidden">
-              <img src={image.src} alt={image.alt} className="h-full w-full object-cover transition duration-500 group-hover:scale-[1.03]" />
-              <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(49,62,41,0.02),rgba(61,78,50,0.16))]" />
-            </div>
-            <div className="liquid-glass organic-wash absolute inset-x-3 bottom-3 rounded-[18px] p-3 sm:inset-x-4 sm:bottom-4 sm:rounded-[20px]">
-              <p className="text-sm leading-5 text-stone">{image.alt}</p>
+            <div className="relative overflow-hidden">
+              <img src={image.src} alt={image.alt} className="w-full h-auto transition duration-500 group-hover:scale-[1.03]" />
+              <div className="absolute inset-0 bg-[linear-gradient(180deg,transparent_55%,rgba(34,29,25,0.55)_100%)]" />
+              <div className="absolute inset-x-3 bottom-3 sm:inset-x-4 sm:bottom-4">
+                <div className="liquid-glass organic-wash rounded-[18px] p-3 sm:rounded-[20px]">
+                  <p className="text-sm leading-5 text-stone">{image.alt}</p>
+                </div>
+              </div>
             </div>
           </button>
         ))}
@@ -196,11 +218,12 @@ export function GalleryShowcase({ images }: GalleryShowcaseProps) {
       <AnimatePresence>
         {lightboxImage ? (
           <motion.div
-            initial={{ opacity: 0 }}
+            initial={{ opacity: 1 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            transition={{ duration: 0.24, ease: [0.22, 1, 0.36, 1] }}
-            className="fixed inset-0 z-[70] flex items-center justify-center bg-[rgba(34,29,25,0.56)] p-0 backdrop-blur-md sm:p-4"
+            transition={{ duration: 0.36, ease: "easeOut" }}
+            className="fixed inset-0 z-[70] flex items-center justify-center bg-[rgba(34,29,25,0.56)] p-0 backdrop-blur-2xl"
+            style={{ willChange: "opacity", transform: "translateZ(0)" }}
             onWheel={(event) => event.preventDefault()}
           >
             <button type="button" aria-label="Закрыть просмотр изображения" onClick={() => setLightboxIndex(null)} className="absolute inset-0" />
@@ -210,9 +233,10 @@ export function GalleryShowcase({ images }: GalleryShowcaseProps) {
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.99, y: 10 }}
               transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
-              className="relative z-10 flex h-full w-full max-w-[98vw] flex-col overflow-hidden bg-[linear-gradient(180deg,rgba(247,248,242,0.98),rgba(232,237,226,0.96))] shadow-[0_28px_90px_rgba(50,63,42,0.24)] sm:h-auto sm:max-h-[96vh] sm:max-w-[94vw] sm:rounded-[28px] lg:max-w-[92vw]"
+              className="relative z-10 flex flex-col overflow-hidden max-h-[96vh]"
+              style={{ width: imgSize ? imgSize.w : "min(96vw, 800px)", minWidth: 0, maxWidth: imgSize ? imgSize.w : "96vw" }}
             >
-              <div className="absolute left-4 right-4 top-4 z-20 flex items-center justify-between gap-3 sm:left-6 sm:right-6 sm:top-6">
+              <div className="absolute left-1 right-1 top-[16px] z-20 flex items-center justify-between gap-3 sm:left-[4rem] sm:right-[4rem] sm:top-[4px]">
                 <div className="liquid-glass organic-wash rounded-full px-4 py-2 text-xs font-semibold uppercase tracking-[0.24em] text-stone">
                   Галерея
                 </div>
@@ -226,7 +250,14 @@ export function GalleryShowcase({ images }: GalleryShowcaseProps) {
               </div>
 
               <div
-                className="relative h-[72vh] min-h-[320px] flex-1 overflow-hidden bg-[radial-gradient(circle_at_top,rgba(243,246,237,0.94),rgba(223,232,214,0.86)_46%,rgba(205,217,196,0.88)_100%)] sm:h-[78vh] sm:min-h-[520px] sm:max-h-[calc(96vh-10rem)]"
+                className="relative w-full min-h-[280px] overflow-hidden sm:min-h-[440px]"
+                style={{
+                  width: imgSize ? imgSize.w : "100%",
+                  height: imgSize ? imgSize.h : "auto",
+                  minHeight: 280,
+                  maxWidth: "100%",
+                  maxHeight: "calc(96vh - 10rem)",
+                }}
                 onTouchStart={handleTouchStart}
                 onTouchMove={handleTouchMove}
                 onTouchEnd={handleTouchEnd}
@@ -240,36 +271,59 @@ export function GalleryShowcase({ images }: GalleryShowcaseProps) {
                     touchAction: "none",
                   }}
                 >
-                  <img src={lightboxImage.src} alt={lightboxImage.alt} className="h-full w-full object-contain" draggable={false} />
-                </div>
-              </div>
-
-              <div className="relative z-10 border-t border-pine/10 bg-[linear-gradient(180deg,rgba(241,245,236,0.96),rgba(228,235,221,0.98))] px-4 py-3 text-stone sm:px-6 sm:py-4">
-                <div className="flex flex-col gap-3 lg:flex-row lg:items-center lg:justify-between">
-                  <div className="min-w-0">
-                    <p className="text-xs font-semibold uppercase tracking-[0.24em] text-accent">{(lightboxIndex ?? 0) + 1} / {images.length}</p>
-                    <p className="mt-2 text-sm leading-6 text-stone sm:text-base">{lightboxImage.alt}</p>
-                  </div>
-
-                  <div className="flex flex-wrap items-center gap-2">
-                    <button
-                      type="button"
-                      onClick={movePrev}
-                      className="rounded-full border border-pine/12 bg-white/65 px-4 py-2 text-sm font-medium text-stone transition hover:bg-white"
-                    >
-                      Назад
-                    </button>
-                    <button
-                      type="button"
-                      onClick={moveNext}
-                      className="rounded-full border border-pine/12 bg-white/65 px-4 py-2 text-sm font-medium text-stone transition hover:bg-white"
-                    >
-                      Далее
-                    </button>
-                  </div>
+                  <img
+                    src={lightboxImage.src}
+                    alt={lightboxImage.alt}
+                    className="h-full w-full object-contain"
+                    draggable={false}
+                    onLoad={(e) => {
+                      const img = e.currentTarget;
+                      if (!img.naturalWidth) return;
+                      const ratio = img.naturalWidth / img.naturalHeight;
+                      const maxW = Math.min(window.innerWidth * 0.94, 1400);
+                      const maxH = Math.min(window.innerHeight * 0.85, 1000);
+                      let w = maxW;
+                      let h = w / ratio;
+                      if (h > maxH) {
+                        h = maxH;
+                        w = h * ratio;
+                      }
+                      if (w > maxW) {
+                        w = maxW;
+                        h = w / ratio;
+                      }
+                      setImgSize({ w: Math.round(w), h: Math.round(h) });
+                    }}
+                  />
                 </div>
               </div>
             </motion.div>
+
+            <div
+              className="absolute bottom-0 left-1/2 z-20 -translate-x-1/2 rounded-[20px] border-t border-pine/10 bg-[linear-gradient(180deg,rgba(241,245,236,0.96),rgba(228,235,221,0.98))] px-3 py-3 text-stone sm:px-4 sm:py-4 sm:rounded-[18px]"
+              style={{ width: imgSize ? imgSize.w : "min(96vw, 800px)", maxWidth: "96vw" }}
+            >
+              <div className="flex flex-col items-center gap-2">
+                <p className="text-xs font-semibold uppercase tracking-[0.24em] text-accent">{(lightboxIndex ?? 0) + 1} / {images.length}</p>
+                <p className="text-center text-sm leading-6 text-stone sm:text-base">{lightboxImage.alt}</p>
+                <div className="flex items-center gap-2">
+                  <button
+                    type="button"
+                    onClick={movePrev}
+                    className="rounded-full border border-pine/12 bg-white/65 px-4 py-2 text-sm font-medium text-stone transition hover:bg-white"
+                  >
+                    ← Назад
+                  </button>
+                  <button
+                    type="button"
+                    onClick={moveNext}
+                    className="rounded-full border border-pine/12 bg-white/65 px-4 py-2 text-sm font-medium text-stone transition hover:bg-white"
+                  >
+                    Далее →
+                  </button>
+                </div>
+              </div>
+            </div>
           </motion.div>
         ) : null}
       </AnimatePresence>

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Lora, Nunito_Sans, Old_Standard_TT } from "next/font/google";
+import { PageLoader } from "@/components/page-loader";
 import { SmoothScroll } from "@/components/smooth-scroll";
 import { siteContent } from "@/data/site-content";
 import "./globals.css";
@@ -70,6 +71,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
   return (
     <html lang="ru" className="scroll-smooth">
       <body className={`${displayFont.variable} ${bodyFont.variable} ${brandFont.variable} bg-linen font-sans text-stone antialiased`}>
+        <PageLoader />
         <SmoothScroll />
         {children}
       </body>
