@@ -135,31 +135,31 @@ export default function HomePage() {
         />
 
         <div className="section-shell grid min-h-[calc(100vh-6rem)] items-center gap-6 md:min-h-[calc(100vh-7rem)] lg:grid-cols-[1.05fr_0.95fr] lg:gap-16">
-          <SectionReveal className="relative z-10 mx-auto w-full max-w-3xl pt-6 text-center sm:pt-10 sm:text-left lg:pt-0">
+          <SectionReveal className="relative z-10 mx-auto w-full max-w-3xl pt-6 sm:pt-10 sm:text-left lg:pt-0">
             <span className="section-eyebrow">Гостевой дом</span>
-            <h1 className="balanced-text mx-auto max-w-[19rem] font-serif text-[2.35rem] font-semibold leading-[0.98] text-[rgba(0, 0, 0)] drop-shadow-[0_10px_30px_rgba(134,129,25,1)] sm:mx-0 sm:max-w-3xl sm:text-6xl lg:text-7xl">
+            <h1 className="balanced-text max-w-[19rem] font-serif text-[2.35rem] font-semibold leading-[0.98] text-[rgba(0, 0, 0)] drop-shadow-[0_10px_30px_rgba(134,129,25,1)] sm:max-w-3xl sm:text-6xl lg:text-7xl">
               {siteContent.hero.title}
             </h1>
-            <p className="balanced-text mx-auto mt-5 max-w-[19rem] text-[20px] leading-7 text-white [text-shadow:0_0_10px_rgba(0,0,0,0.8),0_2px_6px_rgba(0,0,0,0.5)] sm:mx-0 sm:mt-6 sm:max-w-2xl sm:text-lg sm:leading-8">
+            <p className="balanced-text mt-5 max-w-[19rem] text-[20px] leading-7 text-white [text-shadow:0_0_10px_rgba(0,0,0,0.8),0_2px_6px_rgba(0,0,0,0.5)] sm:mx-0 sm:mt-6 sm:max-w-2xl sm:text-lg sm:leading-8">
               {siteContent.hero.description}
             </p>
-            <div className="mx-auto mt-8 flex w-full max-w-[19rem] flex-col items-center gap-3 sm:mx-0 sm:max-w-none sm:w-auto sm:flex-row sm:items-center">
+            <div className="mt-8 flex w-full max-w-[19rem] flex-col gap-3 sm:max-w-none sm:w-auto sm:flex-row sm:items-center">
               <a
                 href="#contacts"
-                className="mx-auto inline-flex min-h-11 w-full max-w-[19rem] items-center justify-center rounded-full bg-accent px-5 py-3 text-center text-sm font-medium text-white shadow-[0_18px_36px_rgba(102,123,87,0.28)] transition hover:bg-accent/90 sm:mx-0 sm:min-h-0 sm:w-auto sm:max-w-none sm:px-6"
+                className="inline-flex min-h-11 w-full max-w-[19rem] items-center justify-center rounded-full bg-accent px-5 py-3 text-center text-sm font-medium text-white shadow-[0_18px_36px_rgba(102,123,87,0.28)] transition hover:bg-accent/90 sm:min-h-0 sm:w-auto sm:max-w-none sm:px-6 sm:justify-center"
               >
                 {siteContent.hero.primaryCta}
               </a>
               <a
                 href="#rooms"
-                className="liquid-glass mx-auto inline-flex min-h-11 w-full max-w-[19rem] items-center justify-center rounded-full px-5 py-3 text-center text-sm font-medium text-stone transition hover:bg-white/50 sm:mx-0 sm:min-h-0 sm:w-auto sm:max-w-none sm:px-6"
+                className="liquid-glass inline-flex min-h-11 w-full max-w-[19rem] items-center justify-center rounded-full px-5 py-3 text-center text-sm font-medium text-stone transition hover:bg-white/50 sm:min-h-0 sm:w-auto sm:max-w-none sm:px-6 sm:justify-center"
               >
                 {siteContent.hero.secondaryCta}
               </a>
             </div>
           </SectionReveal>
 
-          <SectionReveal delay={0.08} className="relative mx-auto w-full max-w-[19rem] sm:max-w-xl lg:ml-auto lg:max-w-[34rem]">
+          <SectionReveal delay={0.08} className="relative w-full max-w-[19rem] sm:max-w-xl lg:ml-auto lg:max-w-[34rem]">
             <div className="liquid-glass organic-wash rounded-[24px] p-4 sm:rounded-[32px] sm:p-6 lg:mt-24">
               <p className="text-xs font-semibold uppercase tracking-[0.26em] text-pine">Тишина и забота</p>
               <p className="mt-3 max-w-md text-sm leading-7 text-stone sm:text-base">

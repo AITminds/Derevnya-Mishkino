@@ -207,7 +207,7 @@ export function GalleryShowcase({ images }: GalleryShowcaseProps) {
               <div className="absolute inset-0 bg-[linear-gradient(180deg,transparent_55%,rgba(34,29,25,0.55)_100%)]" />
               <div className="absolute inset-x-3 bottom-3 sm:inset-x-4 sm:bottom-4">
                 <div className="liquid-glass organic-wash rounded-[18px] p-3 sm:rounded-[20px]">
-                  <p className="text-sm leading-5 text-stone">{image.alt}</p>
+                  <p className="text-sm leading-5 font-semibold text-black">{image.alt}</p>
                 </div>
               </div>
             </div>

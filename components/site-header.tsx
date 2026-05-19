@@ -71,7 +71,7 @@ export function SiteHeader({ navigation, siteName, contactHref }: SiteHeaderProp
           <div className="ml-2 flex shrink-0 items-center gap-2 sm:ml-3 sm:gap-3">
             <a
               href={contactHref}
-              className="hidden rounded-full bg-accent px-6 py-3 text-base font-medium text-white shadow-[0_12px_30px_rgba(102,123,87,0.28)] transition hover:bg-accent/90 md:inline-flex"
+              className="absolute left-1/2 -translate-x-1/2 inline-flex rounded-full bg-accent px-4 py-2 text-sm font-medium text-white shadow-[0_12px_30px_rgba(102,123,87,0.28)] transition hover:bg-accent/90 md:static md:translate-x-0 md:px-6 md:py-3 md:text-base"
             >
               Контакты
             </a>
