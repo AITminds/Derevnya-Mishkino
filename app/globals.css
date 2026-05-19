@@ -50,6 +50,7 @@ img {
   @apply mb-4 inline-flex rounded-full border border-accent/15 bg-white/60 px-4 py-2 text-xs font-medium uppercase tracking-[0.28em] text-accent;
 }
 
+
 .balanced-text {
   text-wrap: balance;
 }

@@ -92,12 +92,30 @@ export default function HomePage() {
     address: {
       "@type": "PostalAddress",
       streetAddress: siteContent.contacts.address,
+      addressRegion: "Краснодарский край",
+      addressLocality: "Новороссийск",
       addressCountry: "RU",
     },
+    geo: {
+      "@type": "GeoCoordinates",
+      latitude: 44.699538,
+      longitude: 37.720493,
+    },
+    priceRange: "₽₽",
     image: [
       `${siteContent.siteUrl}${siteContent.hero.image}`,
       ...siteContent.gallery.images.map((image) => `${siteContent.siteUrl}${image.src}`),
     ],
+    amenityFeature: [
+      { "@type": "LocationFeatureSpecification", name: "Баня" },
+      { "@type": "LocationFeatureSpecification", name: "Бассейн с подогревом" },
+      { "@type": "LocationFeatureSpecification", name: "Беседка" },
+      { "@type": "LocationFeatureSpecification", name: "Мангал" },
+      { "@type": "LocationFeatureSpecification", name: "Wi-Fi" },
+      { "@type": "LocationFeatureSpecification", name: "Парковка" },
+      { "@type": "LocationFeatureSpecification", name: "Можно с животными" },
+    ],
+    petsAllowed: true,
   };
 
   return (
@@ -122,7 +140,7 @@ export default function HomePage() {
             <h1 className="balanced-text mx-auto max-w-[19rem] font-serif text-[2.35rem] font-semibold leading-[0.98] text-[rgba(0, 0, 0)] drop-shadow-[0_10px_30px_rgba(134,129,25,1)] sm:mx-0 sm:max-w-3xl sm:text-6xl lg:text-7xl">
               {siteContent.hero.title}
             </h1>
-            <p className="balanced-text mx-auto mt-5 max-w-[19rem] text-[0.98rem] leading-7 text-stone sm:mx-0 sm:mt-6 sm:max-w-2xl sm:text-lg sm:leading-8">
+            <p className="balanced-text mx-auto mt-5 max-w-[19rem] text-[20px] leading-7 text-white [text-shadow:0_0_10px_rgba(0,0,0,0.8),0_2px_6px_rgba(0,0,0,0.5)] sm:mx-0 sm:mt-6 sm:max-w-2xl sm:text-lg sm:leading-8">
               {siteContent.hero.description}
             </p>
             <div className="mx-auto mt-8 flex w-full max-w-[19rem] flex-col items-center gap-3 sm:mx-0 sm:max-w-none sm:w-auto sm:flex-row sm:items-center">

@@ -65,6 +65,9 @@ export const metadata: Metadata = {
     },
   },
   category: "hospitality",
+  other: {
+    "theme-color": "#f7f8f2",
+  },
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {

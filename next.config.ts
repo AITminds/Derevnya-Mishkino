@@ -3,7 +3,7 @@ import type { NextConfig } from "next";
 const nextConfig: NextConfig = {
   compress: true,
   poweredByHeader: false,
-  output: "standalone",
+  output: "export",
   images: {
     unoptimized: true,
   },
