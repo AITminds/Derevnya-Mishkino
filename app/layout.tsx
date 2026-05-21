@@ -65,6 +65,11 @@ export const metadata: Metadata = {
     },
   },
   category: "hospitality",
+  icons: {
+    icon: '/favicon.svg',
+    shortcut: '/favicon.svg',
+    apple: '/favicon.svg',
+  },
   other: {
     "theme-color": "#f7f8f2",
   },
